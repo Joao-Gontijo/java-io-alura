@@ -1,36 +1,17 @@
 package io.github.joaogontijo.java.io.teste;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.io.Writer;
 
 public class TesteCopiaArquivo {
 	public static void main(String[] args) throws IOException {
-		InputStream fis = new FileInputStream("texto.txt");
-        Reader isr = new InputStreamReader(fis);
-        BufferedReader br = new BufferedReader(isr);
+		
+        FileWriter fw = new FileWriter("escrita.txt");
         
-        OutputStream fos = new FileOutputStream("arquivo-copiado.txt");
-        Writer osw = new OutputStreamWriter(fos);
-        BufferedWriter bw = new BufferedWriter(osw);
-
-        String linha = br.readLine();
+        fw.write("Sobrescrevendo o arquivo com fileWriter");
+        fw.write(System.lineSeparator());
+        fw.write("Nova linha");
         
-        while (linha != null && !linha.isEmpty()) {
-        	bw.write(linha);
-        	bw.newLine();
-        	linha = br.readLine();
-        }
-
-        br.close();
-        bw.close();
+        fw.close();
 	}
 }
